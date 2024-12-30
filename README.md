@@ -9,6 +9,17 @@
 
 A fully customizable Sit plugin
 
+## Permissions
+
+`vsit.sit`
+
+Allows the user to sit down
+
+`vsit.reload`
+
+Allows the user to reload the configuration
+
+## Preview
 You can use `/sit` or click on blocks like `stairs` or `carpets`
 
 ![/sit](assets/slashsit.gif)
@@ -16,7 +27,7 @@ You can use `/sit` or click on blocks like `stairs` or `carpets`
 
 ---
 
-You can sit on other players:
+## You can sit on other players ⭐
 ![Ride other players](assets/OtherPlayers.gif)
 
 Custom configuration:
