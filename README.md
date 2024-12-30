@@ -1,6 +1,6 @@
 ![Discord](https://img.shields.io/discord/1322873747535040512)
-![Build Status](https://img.shields.io/github/actions/workflow/status/Varilx-Developement/VSit/build.yml?branch=main)
-![Release](https://img.shields.io/github/v/release/Varilx-Developement/VSit)
+![Build Status](https://img.shields.io/github/actions/workflow/status/Varilx-Development/VSit/build.yml?branch=main)
+![Release](https://img.shields.io/github/v/release/Varilx-Development/VSit)
 
 # VSit
 
