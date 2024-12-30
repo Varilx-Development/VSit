@@ -1,0 +1,11 @@
+language: "en"
+
+enabled: true
+players:
+  enabled: true
+blocks:
+  enabled: true
+  blocks:
+    - STAIR
+    - CARPET
+    - SLAB

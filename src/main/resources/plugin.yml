@@ -1,0 +1,11 @@
+name: VSit
+version: '1.0'
+main: de.varilx.sit.VSit
+api-version: '1.21'
+authors: [ Dario ]
+description: A fully customizable sit plugin
+permissions:
+  vsit.sit:
+    description: "Allows the user to sit down"
+  vsit.reload:
+    description: "Allows the user to reload the configuration"
