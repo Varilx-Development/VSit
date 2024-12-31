@@ -1,3 +1,6 @@
+![v-sit](https://github.com/user-attachments/assets/f9f40422-ceb0-4f1f-93c5-276087940b08)
+
+
 ![Discord](https://img.shields.io/discord/1322873747535040512)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/Varilx-Development/VSit/build.yml?branch=main)
 ![Release](https://img.shields.io/github/v/release/Varilx-Development/VSit)
@@ -6,6 +9,17 @@
 
 A fully customizable Sit plugin
 
+## Permissions
+
+`vsit.sit`
+
+Allows the user to sit down
+
+`vsit.reload`
+
+Allows the user to reload the configuration
+
+## Preview
 You can use `/sit` or click on blocks like `stairs` or `carpets`
 
 ![/sit](assets/slashsit.gif)
@@ -13,7 +27,7 @@ You can use `/sit` or click on blocks like `stairs` or `carpets`
 
 ---
 
-You can sit on other players:
+## You can sit on other players ⭐
 ![Ride other players](assets/OtherPlayers.gif)
 
 Custom configuration:
