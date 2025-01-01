@@ -28,7 +28,6 @@ public class BlockSitListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         YamlConfiguration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
-        System.out.println("interact");
         if (event.getClickedBlock() == null) return;
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
