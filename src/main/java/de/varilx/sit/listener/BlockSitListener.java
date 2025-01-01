@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -24,13 +25,15 @@ public class BlockSitListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         YamlConfiguration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
+        System.out.println("interact");
         if (event.getClickedBlock() == null) return;
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
-        if (!event.getAction().isRightClick()) return;
+        if (configuration.getStringList("blocks.blocked-worlds").contains(event.getClickedBlock().getWorld().getName())) return;
+        if (event.getPlayer().isSneaking()) return;
         for (String block : configuration.getStringList("blocks.blocks")) {
             if (event.getClickedBlock().getType().name().toLowerCase().contains(block.toLowerCase())) {
                 plugin.sitDown(event.getPlayer(), event.getClickedBlock(), false);

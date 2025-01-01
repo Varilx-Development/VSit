@@ -78,7 +78,7 @@ jobs:
           name: ${{ env.VERSION }}
           version: ${{ env.VERSION }}
           changelog: ${{ github.event.release.body }}
-          game_versions: 1.20.5,1.20.6,1.21,1.21.1,1.21.2,1.21.3,1.21.4
+          game_versions: 1.20.6,1.21,1.21.1,1.21.2,1.21.3,1.21.4
           release_type: ${{ env.VERSION_TYPE }}
           loaders: paper,purpur
           featured: true

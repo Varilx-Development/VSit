@@ -1,13 +1,13 @@
 package de.varilx.sit.command;
 
 import de.varilx.BaseAPI;
-import de.varilx.config.Configuration;
 import de.varilx.sit.VSit;
 import de.varilx.utils.language.LanguageUtils;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,8 +21,20 @@ public class SitCommand {
                             .requires(ctx -> ctx.getSender().hasPermission("vsit.sit"))
                             .requires(ctx -> ctx.getSender() instanceof Player)
                             .executes(ctx -> {
+                                Configuration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
                                 Player player = (Player) ctx.getSource().getSender();
-                                plugin.sitDown(player, getBlockBelow(player), true);
+                                Block blockBelow = getBlockBelow(player);
+
+                                // Check if they can sit down normally (in the block)
+                                for (String block : configuration.getStringList("blocks.blocks")) {
+                                    if (blockBelow.getType().name().toLowerCase().contains(block.toLowerCase())) {
+                                        plugin.sitDown(player, blockBelow, false);
+                                        player.sendMessage(LanguageUtils.getMessage("commands.sit"));
+                                        return 1;
+                                    }
+                                }
+
+                                plugin.sitDown(player, blockBelow, true);
                                 player.sendMessage(LanguageUtils.getMessage("commands.sit"));
                                 return 1;
                             })
@@ -32,7 +44,7 @@ public class SitCommand {
                                         CompletableFuture.runAsync(() -> {
                                             BaseAPI.getBaseAPI().getConfiguration().reload();
                                             BaseAPI.getBaseAPI().getDatabaseConfiguration().reload();
-                                            BaseAPI.getBaseAPI().getLanguageConfigurations().values().forEach(Configuration::reload);
+                                            BaseAPI.getBaseAPI().getLanguageConfigurations().values().forEach(de.varilx.config.Configuration::reload);
                                             ctx.getSource().getSender().sendMessage(LanguageUtils.getMessage("commands.reload"));
                                         });
                                         return 1;

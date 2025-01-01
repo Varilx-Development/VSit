@@ -15,6 +15,9 @@ public class PlayerSitListener implements Listener {
         YamlConfiguration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
         if (!configuration.getBoolean("players.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
+        if (configuration.getStringList("players.blocked-worlds").contains(event.getPlayer().getWorld().getName())) return;
+        if (event.getPlayer().isSneaking()) return;
+
         if (!(event.getRightClicked() instanceof Player other)) return;
         other.addPassenger(event.getPlayer());
     }

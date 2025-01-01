@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     // PaperMC API
-    compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:${project.property("paper_version")}")
 
     // Lombok
     implementation("org.projectlombok:lombok:1.18.36")
@@ -55,8 +55,15 @@ java {
 }
 
 
-tasks.named<ShadowJar>("shadowJar") {
+tasks.shadowJar {
     archiveClassifier.set("")
+    exclude("com/mongodb/**")
+    exclude("org/hibernate/**")
+    exclude("org/sqlite/**")
+    exclude("org/glassfish/**")
+    exclude("org/bson/**")
+    exclude("net/bytebuddy/**")
+    exclude("jakarta/**")
 }
 
 tasks.register<Jar>("sourcesJar") {

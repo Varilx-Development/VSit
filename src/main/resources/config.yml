@@ -3,8 +3,13 @@ language: "en"
 enabled: true
 players:
   enabled: true
+  blocked-worlds:
+    - "SOME_CUSTOM_DISABLED_WORLD"
+
 blocks:
   enabled: true
+  blocked-worlds:
+    - "SOME_CUSTOM_DISABLED_WORLD"
   blocks:
     - STAIR
     - CARPET

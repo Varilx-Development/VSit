@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -41,6 +42,7 @@ public final class VSit extends JavaPlugin {
     }
 
     public void sitDown(Player player, Block block, boolean command) {
+        if (block.getRelative(BlockFace.UP).getType().isCollidable()) return;
         ArmorStand armorStand = block.getWorld().spawn(block.getLocation()
                 .add(0.5, command ? 0.2 : 0, 0.5)
                 .subtract(0, command ? 0 :getHeight(block), 0), ArmorStand.class, (stand) -> {
