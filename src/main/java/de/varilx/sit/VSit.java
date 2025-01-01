@@ -29,7 +29,7 @@ public final class VSit extends JavaPlugin {
             }
         }
 
-        new BaseAPI(this).enable();
+        new BaseAPI(this, 24310).enable();
 
         YamlConfiguration config = BaseAPI.getBaseAPI().getConfiguration().getConfig();
 
