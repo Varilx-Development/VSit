@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended",
     ":assignee(Knerio)",
+    ":reviewer(Knerio)",
     ":label(dependencies)"
   ],
 }
