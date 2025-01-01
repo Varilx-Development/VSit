@@ -12,24 +12,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.vehicle.VehicleExitEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockSitListener implements Listener {
 
-    private final YamlConfiguration configuration;
     private final VSit plugin;
 
     public BlockSitListener(VSit plugin) {
         this.plugin = plugin;
-        this.configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        YamlConfiguration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
         if (event.getClickedBlock() == null) return;
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
+        if (!event.getAction().isRightClick()) return;
         for (String block : configuration.getStringList("blocks.blocks")) {
             if (event.getClickedBlock().getType().name().toLowerCase().contains(block.toLowerCase())) {
                 plugin.sitDown(event.getPlayer(), event.getClickedBlock(), false);

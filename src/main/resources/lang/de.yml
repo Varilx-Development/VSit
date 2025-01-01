@@ -1,45 +1,7 @@
-prefix: "<b><gradient:#08FB22:#BBFDAD>[VDiscord]</gradient></b><reset><!i><gray> " # Dieses Präfix kann überall als "<prefix>" verwendet werden
-startup: "<prefix>Discord-Integration wurde gestartet!"
+prefix: "<b><gradient:#08FB22:#BBFDAD>[VSit]</gradient></b><reset><!i><gray> "
 
-chatbridge:
-  join:
-    enabled: true
-    color: "#00FF00"
-    message: ""
-    title: "<player> hat das Spiel betreten"
-    name: "Chatbridge" # Der Name des Webhook-Senders, Standardwert aus config.yml "chatbridge.webhook.name"
-    avatar: "some_custom_avatar_url" # Standardwert aus config.yml "chatbridge.webhook.avatar"
-  quit:
-    enable: true
-    color: "#FF0000"
-    message: ""
-    title: "<player> hat das Spiel verlassen"
-    name: "Chatbridge" # Standardwert aus config.yml "chatbridge.webhook.name"
-    avatar: "some_custom_avatar_url" # Standardwert aus config.yml "chatbridge.webhook.avatar"
-  startup:
-    enabled: true
-    color: "#00FF00"
-    message: "Der Server wurde gestartet"
-    title: "Startup"
-  shutdown:
-    enabled: true
-    color: "#FF0000"
-    message: "Der Server wurde gestoppt"
-    title: "Shutdown"
-  ingame-message: # Ingame -> Discord
-    enabled: true
-    message: "<message>"
-    name: "<name>"
-  discord-message: # Discord -> Ingame, nur verfügbar mit Bot
-    enabled: true
-    message: "<dark_gray>[<blue><b>Discord</b></blue>] <gray><discordname> <dark_gray>»  <yellow><message>"
+startup: "<prefix>VSit wurde gestartet!"
 
 commands:
-  reload:
-    reloaded: "<prefix>Die Konfiguration wurde neu geladen"
-  link:
-    linked: "Dein Konto wurde mit <name> verbunden"
-    already-linked: "<prefix><red>Du bist bereits verlinkt und kannst dich nicht erneut verlinken"
-    disabled: "<prefix><red>Diese Funktion ist deaktiviert"
-    format: "<prefix>Dieser Befehl existiert nicht, benutze den Befehl /discord link"
-    code-sent: "<prefix>Um dein Discord-Konto zu verlinken, sende den folgenden Code an den DiscordBot: <click:copy_to_clipboard:<code>><hover:show_text:Hier klicken, um zu kopieren><yellow><code></yellow> (klicken zum Kopieren)"
+  sit: "<prefix>Du sitzt jetzt."
+  reload: "<prefix>Die Konfigurationen wurden neu geladen."
