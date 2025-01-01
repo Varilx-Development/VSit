@@ -5,6 +5,12 @@
 ![Build Status](https://img.shields.io/github/actions/workflow/status/Varilx-Development/VSit/build.yml?branch=main)
 ![Release](https://img.shields.io/github/v/release/Varilx-Development/VSit)
 
+<p align="center">
+    <a href="https://modrinth.com/plugin/vsit">
+        <img src="https://raw.githubusercontent.com/vLuckyyy/badges/main/avaiable-on-modrinth.svg" alt="Available on Modrinth" />
+    </a>
+</p>
+
 # VSit
 
 A fully customizable Sit plugin
