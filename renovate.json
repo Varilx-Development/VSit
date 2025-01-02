@@ -5,5 +5,11 @@
     ":assignee(Knerio)",
     ":reviewer(Knerio)",
     ":label(dependencies)"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["de.varilx:base-api"],
+      "excludeVersions": ["*.*.*-*"]
+    }
   ]
 }
