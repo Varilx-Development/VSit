@@ -31,7 +31,7 @@ dependencies {
     implementation("org.jetbrains:annotations:26.0.1")
 
     // Base API
-    implementation("de.varilx:base-api:0.4.1")
+    implementation("de.varilx:base-api:0.5.0")
 
 }
 
