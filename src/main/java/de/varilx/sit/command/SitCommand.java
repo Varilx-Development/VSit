@@ -1,6 +1,7 @@
 package de.varilx.sit.command;
 
 import de.varilx.BaseAPI;
+import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.VSit;
 import de.varilx.utils.language.LanguageUtils;
 import io.papermc.paper.command.brigadier.Commands;
@@ -21,7 +22,7 @@ public class SitCommand {
                             .requires(ctx -> ctx.getSender().hasPermission("vsit.sit"))
                             .requires(ctx -> ctx.getSender() instanceof Player)
                             .executes(ctx -> {
-                                Configuration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
+                                VaxConfiguration configuration = BaseAPI.get().getConfiguration();
                                 Player player = (Player) ctx.getSource().getSender();
                                 Block blockBelow = getBlockBelow(player);
 
@@ -42,9 +43,9 @@ public class SitCommand {
                                     .requires(ctx -> ctx.getSender().hasPermission("vsit.reload"))
                                     .executes(ctx -> {
                                         CompletableFuture.runAsync(() -> {
-                                            BaseAPI.getBaseAPI().getConfiguration().reload();
-                                            BaseAPI.getBaseAPI().getDatabaseConfiguration().reload();
-                                            BaseAPI.getBaseAPI().getLanguageConfigurations().values().forEach(de.varilx.config.Configuration::reload);
+                                            BaseAPI.get().getConfiguration().reload();
+                                            BaseAPI.get().getDatabaseConfiguration().reload();
+                                            BaseAPI.get().getCurrentLanguageConfiguration().reload();
                                             ctx.getSource().getSender().sendMessage(LanguageUtils.getMessage("commands.reload"));
                                         });
                                         return 1;
