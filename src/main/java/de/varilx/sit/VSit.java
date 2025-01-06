@@ -1,6 +1,8 @@
 package de.varilx.sit;
 
 import de.varilx.BaseAPI;
+import de.varilx.BaseSpigotAPI;
+import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.command.SitCommand;
 import de.varilx.sit.listener.BlockSitListener;
 import de.varilx.sit.listener.PlayerSitListener;
@@ -29,9 +31,7 @@ public final class VSit extends JavaPlugin {
             }
         }
 
-        new BaseAPI(this, 24310).enable();
-
-        YamlConfiguration config = BaseAPI.getBaseAPI().getConfiguration().getConfig();
+        new BaseSpigotAPI(this, 24310).enable();
 
         Bukkit.getPluginManager().registerEvents(new BlockSitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerSitListener(), this);

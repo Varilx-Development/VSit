@@ -1,6 +1,7 @@
 package de.varilx.sit.listener;
 
 import de.varilx.BaseAPI;
+import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.VSit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -27,7 +28,7 @@ public class BlockSitListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        YamlConfiguration configuration = BaseAPI.getBaseAPI().getConfiguration().getConfig();
+        VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (event.getClickedBlock() == null) return;
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
