@@ -39,11 +39,11 @@ public class BlockSitListener implements Listener {
         Player player = event.getPlayer();
         if (player.isSneaking()) return;
         
-        for (String block : configuration.getStringList("blocks.blocks")) {
-            if (block.getType().name().toLowerCase().contains(block.toLowerCase())) {
+        for (String blockStr : configuration.getStringList("blocks.blocks")) {
+            if (block.getType().name().toLowerCase().contains(blockStr.toLowerCase())) {
                 if (!configuration.getBoolean("blocks.right-click") && event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
                 if (!configuration.getBoolean("blocks.left-click") && event.getAction() == Action.LEFT_CLICK_BLOCK) return;
-                plugin.sitDown(player, block, false);
+                plugin.sitDown(player, blockStr, false);
             }
         }
     }
