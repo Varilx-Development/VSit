@@ -8,6 +8,8 @@ players:
 
 blocks:
   enabled: true
+  right-click: true
+  left-click: false
   blocked-worlds:
     - "SOME_CUSTOM_DISABLED_WORLD"
   blocks:
