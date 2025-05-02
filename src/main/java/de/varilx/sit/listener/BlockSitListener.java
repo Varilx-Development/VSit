@@ -43,7 +43,7 @@ public class BlockSitListener implements Listener {
             if (block.getType().name().toLowerCase().contains(blockStr.toLowerCase())) {
                 if (!configuration.getBoolean("blocks.right-click") && event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
                 if (!configuration.getBoolean("blocks.left-click") && event.getAction() == Action.LEFT_CLICK_BLOCK) return;
-                plugin.sitDown(player, blockStr, false);
+                plugin.sitDown(player, block, false);
             }
         }
     }
