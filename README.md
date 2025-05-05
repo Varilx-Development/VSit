@@ -46,6 +46,8 @@ players:
   enabled: true
 blocks:
   enabled: true
+  right-click: true # allow sitting with right click
+  left-click: false # allow sitting with left click
   blocks:
     - STAIR
     - CARPET
