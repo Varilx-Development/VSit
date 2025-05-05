@@ -8,6 +8,7 @@ players:
 
 blocks:
   enabled: true
+  require-empty-hand: false
   right-click: true
   left-click: false
   blocked-worlds:
