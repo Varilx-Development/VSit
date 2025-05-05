@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDismountEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.vehicle.VehicleExitEvent;
@@ -28,15 +29,21 @@ public class BlockSitListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (event.getClickedBlock() == null) return;
+        VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
-        if (configuration.getStringList("blocks.blocked-worlds").contains(event.getClickedBlock().getWorld().getName())) return;
-        if (event.getPlayer().isSneaking()) return;
-        for (String block : configuration.getStringList("blocks.blocks")) {
-            if (event.getClickedBlock().getType().name().toLowerCase().contains(block.toLowerCase())) {
-                plugin.sitDown(event.getPlayer(), event.getClickedBlock(), false);
+        
+        Block block = event.getClickedBlock();
+        if (configuration.getStringList("blocks.blocked-worlds").contains(block.getWorld().getName())) return;
+        Player player = event.getPlayer();
+        if (player.isSneaking()) return;
+        
+        for (String blockStr : configuration.getStringList("blocks.blocks")) {
+            if (block.getType().name().toLowerCase().contains(blockStr.toLowerCase())) {
+                if (!configuration.getBoolean("blocks.right-click") && event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
+                if (!configuration.getBoolean("blocks.left-click") && event.getAction() == Action.LEFT_CLICK_BLOCK) return;
+                plugin.sitDown(player, block, false);
             }
         }
     }
