@@ -46,6 +46,7 @@ players:
   enabled: true
 blocks:
   enabled: true
+  require-empty-hand: false # a player's main hand must be empty to sit
   right-click: true # allow sitting with right click
   left-click: false # allow sitting with left click
   blocks:

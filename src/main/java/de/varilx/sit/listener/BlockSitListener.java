@@ -29,16 +29,16 @@ public class BlockSitListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getClickedBlock() == null) return;
+        Block block = event.getClickedBlock();
+        if (block == null) return;
         VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
-        
-        Block block = event.getClickedBlock();
         if (configuration.getStringList("blocks.blocked-worlds").contains(block.getWorld().getName())) return;
         Player player = event.getPlayer();
         if (player.isSneaking()) return;
-        
+        if (configuration.getBoolean("blocks.require-empty-hand") && !player.getInventory().getItemInMainHand().isEmpty()) return;
+
         for (String blockStr : configuration.getStringList("blocks.blocks")) {
             if (block.getType().name().toLowerCase().contains(blockStr.toLowerCase())) {
                 if (!configuration.getBoolean("blocks.right-click") && event.getAction() == Action.RIGHT_CLICK_BLOCK) return;
