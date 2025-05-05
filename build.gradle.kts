@@ -28,7 +28,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.38")
 
     // JetBrains Annotations
-    implementation("org.jetbrains:annotations:26.0.1")
+    implementation("org.jetbrains:annotations:26.0.2")
 
     // Base API
     implementation("de.varilx:base-api:1.1.0")
