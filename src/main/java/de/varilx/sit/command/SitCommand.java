@@ -1,5 +1,6 @@
 package de.varilx.sit.command;
 
+import com.mojang.brigadier.Command;
 import de.varilx.BaseAPI;
 import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.VSit;
@@ -10,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -39,6 +41,20 @@ public class SitCommand {
                                 player.sendMessage(LanguageUtils.getMessage("commands.sit"));
                                 return 1;
                             })
+                            .then(Commands.literal("toggle")
+                                .requires(ctx -> ctx.getSender().hasPermission("vsit.toggle"))
+                                .executes(ctx -> {
+                                    Player player = (Player) ctx.getSource().getSender();
+                                    if(player.hasMetadata("vsit_blocked")) {
+                                        player.removeMetadata("vsit_blocked", plugin);
+                                        player.sendMessage(LanguageUtils.getMessage("commands.toggle.disabled"));
+                                    } else {
+                                        player.setMetadata("vsit_blocked", new FixedMetadataValue(plugin, true));
+                                        player.sendMessage(LanguageUtils.getMessage("commands.toggle.enabled"));
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })
+                            )
                             .then(Commands.literal("reload")
                                     .requires(ctx -> ctx.getSender().hasPermission("vsit.reload"))
                                     .executes(ctx -> {
