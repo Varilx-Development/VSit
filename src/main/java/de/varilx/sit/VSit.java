@@ -34,7 +34,7 @@ public final class VSit extends JavaPlugin {
         new BaseSpigotAPI(this, 24310).enable();
 
         Bukkit.getPluginManager().registerEvents(new BlockSitListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerSitListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerSitListener(this), this);
 
         new SitCommand(this);
 
