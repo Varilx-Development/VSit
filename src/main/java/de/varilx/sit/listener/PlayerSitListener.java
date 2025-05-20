@@ -23,6 +23,7 @@ public class PlayerSitListener implements Listener {
     public void onPlayerInteractAtEntity(PlayerInteractEntityEvent event) {
         VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if(event.getPlayer().getPersistentDataContainer().has(new NamespacedKey(plugin, "vsit_blocked"), PersistentDataType.BOOLEAN)) return;
+        if (!configuration.getBoolean("players.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
         if (configuration.getStringList("players.blocked-worlds").contains(event.getPlayer().getWorld().getName())) return;
         if (event.getPlayer().isSneaking()) return;
