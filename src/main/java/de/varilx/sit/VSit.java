@@ -5,6 +5,7 @@ import de.varilx.BaseSpigotAPI;
 import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.command.SitCommand;
 import de.varilx.sit.listener.BlockSitListener;
+import de.varilx.sit.listener.ConnectionListener;
 import de.varilx.sit.listener.PlayerSitListener;
 import de.varilx.utils.language.LanguageUtils;
 import lombok.Getter;
@@ -20,7 +21,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
 
+@Getter
 public final class VSit extends JavaPlugin {
+
+    private NamespacedKey sitBlockedKey;
 
     @Override
     public void onEnable() {
@@ -33,8 +37,11 @@ public final class VSit extends JavaPlugin {
 
         new BaseSpigotAPI(this, 24310).enable();
 
+        this.sitBlockedKey = new NamespacedKey(this, "vsit_blocked");
+
         Bukkit.getPluginManager().registerEvents(new BlockSitListener(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerSitListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new ConnectionListener(this), this);
 
         new SitCommand(this);
 
