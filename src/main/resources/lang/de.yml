@@ -6,5 +6,5 @@ commands:
   sit: "<prefix>Du sitzt jetzt."
   reload: "<prefix>Die Konfigurationen wurden neu geladen."
   toggle:
-    off: "<prefix><red>Du kannst nun nicht mehr auf Blöcken sitzen"
-    on: "<prefix><green>Du kannst wieder auf Blöcken sitzen"
+    dsiabled: "<prefix><red>Du kannst nun nicht mehr auf Blöcken sitzen"
+    enabled: "<prefix><green>Du kannst wieder auf Blöcken sitzen"

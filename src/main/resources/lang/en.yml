@@ -7,5 +7,5 @@ commands:
   sit: "<prefix>You are now sitting down"
   reload: "<prefix>The Configurations has been reloaded"
   toggle:
-    off: "<prefix><red>You can no longer sit on blocks"
-    on: "<prefix><green>You can now sit on blocks"
+    disabled: "<prefix><red>You can no longer sit on blocks"
+    enabled: "<prefix><green>You can now sit on blocks"
