@@ -1,5 +1,6 @@
 package de.varilx.sit.command;
 
+import com.mojang.brigadier.Command;
 import de.varilx.BaseAPI;
 import de.varilx.configuration.VaxConfiguration;
 import de.varilx.sit.VSit;
@@ -7,10 +8,14 @@ import de.varilx.utils.language.LanguageUtils;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.persistence.PersistentDataType;
 
+import javax.naming.Name;
 import java.util.concurrent.CompletableFuture;
 
 public class SitCommand {
@@ -39,6 +44,20 @@ public class SitCommand {
                                 player.sendMessage(LanguageUtils.getMessage("commands.sit"));
                                 return 1;
                             })
+                            .then(Commands.literal("toggle")
+                                .requires(ctx -> ctx.getSender().hasPermission("vsit.toggle"))
+                                .executes(ctx -> {
+                                    Player player = (Player) ctx.getSource().getSender();
+                                    if(player.getPersistentDataContainer().getOrDefault(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, false)) {
+                                        player.getPersistentDataContainer().set(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, false);
+                                        player.sendMessage(LanguageUtils.getMessage("commands.toggle.enabled"));
+                                    } else {
+                                        player.getPersistentDataContainer().set(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, true);
+                                        player.sendMessage(LanguageUtils.getMessage("commands.toggle.disabled"));
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })
+                            )
                             .then(Commands.literal("reload")
                                     .requires(ctx -> ctx.getSender().hasPermission("vsit.reload"))
                                     .executes(ctx -> {
