@@ -8,11 +8,14 @@ import de.varilx.utils.language.LanguageUtils;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.persistence.PersistentDataType;
 
+import javax.naming.Name;
 import java.util.concurrent.CompletableFuture;
 
 public class SitCommand {
@@ -46,10 +49,10 @@ public class SitCommand {
                                 .executes(ctx -> {
                                     Player player = (Player) ctx.getSource().getSender();
                                     if(player.hasMetadata("vsit_blocked")) {
-                                        player.removeMetadata("vsit_blocked", plugin);
+                                        player.getPersistentDataContainer().remove(new NamespacedKey(plugin, "vsit_blocked"));
                                         player.sendMessage(LanguageUtils.getMessage("commands.toggle.disabled"));
                                     } else {
-                                        player.setMetadata("vsit_blocked", new FixedMetadataValue(plugin, true));
+                                        player.getPersistentDataContainer().set(new NamespacedKey(plugin, "vsit_blocked"), PersistentDataType.BOOLEAN, true);
                                         player.sendMessage(LanguageUtils.getMessage("commands.toggle.enabled"));
                                     }
                                     return Command.SINGLE_SUCCESS;
