@@ -48,11 +48,11 @@ public class SitCommand {
                                 .requires(ctx -> ctx.getSender().hasPermission("vsit.toggle"))
                                 .executes(ctx -> {
                                     Player player = (Player) ctx.getSource().getSender();
-                                    if(player.getPersistentDataContainer().has(new NamespacedKey(plugin, "vsit_blocked"), PersistentDataType.BOOLEAN)) {
-                                        player.getPersistentDataContainer().remove(new NamespacedKey(plugin, "vsit_blocked"));
+                                    if(player.getPersistentDataContainer().getOrDefault(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, false)) {
+                                        player.getPersistentDataContainer().set(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, false);
                                         player.sendMessage(LanguageUtils.getMessage("commands.toggle.enabled"));
                                     } else {
-                                        player.getPersistentDataContainer().set(new NamespacedKey(plugin, "vsit_blocked"), PersistentDataType.BOOLEAN, true);
+                                        player.getPersistentDataContainer().set(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, true);
                                         player.sendMessage(LanguageUtils.getMessage("commands.toggle.disabled"));
                                     }
                                     return Command.SINGLE_SUCCESS;
