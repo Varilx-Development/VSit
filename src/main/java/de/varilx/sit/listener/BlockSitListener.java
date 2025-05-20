@@ -30,12 +30,13 @@ public class BlockSitListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
+        Player player = event.getPlayer();
+        if(player.hasMetadata("vsit_blocked")) return;
         if (block == null) return;
         VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (!configuration.getBoolean("blocks.enabled")) return;
         if (!configuration.getBoolean("enabled")) return;
         if (configuration.getStringList("blocks.blocked-worlds").contains(block.getWorld().getName())) return;
-        Player player = event.getPlayer();
         if (player.isSneaking()) return;
         if (configuration.getBoolean("blocks.require-empty-hand") && !player.getInventory().getItemInMainHand().isEmpty()) return;
 
