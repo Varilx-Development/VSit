@@ -31,7 +31,7 @@ public class BlockSitListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-        if(player.getPersistentDataContainer().has(new NamespacedKey(plugin, "vsit_blocked"), PersistentDataType.BOOLEAN)) return;
+        if(player.getPersistentDataContainer().getOrDefault(plugin.getSitBlockedKey(), PersistentDataType.BOOLEAN, false)) return;
         if (block == null) return;
         VaxConfiguration configuration = BaseAPI.get().getConfiguration();
         if (!configuration.getBoolean("blocks.enabled")) return;
