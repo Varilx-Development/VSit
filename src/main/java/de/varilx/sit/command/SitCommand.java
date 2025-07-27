@@ -31,17 +31,25 @@ public class SitCommand {
                                 Player player = (Player) ctx.getSource().getSender();
                                 Block blockBelow = getBlockBelow(player);
 
-                                // Check if they can sit down normally (in the block)
+                                if (configuration.getBoolean("blocks.require-empty-hand") && !player.getInventory().getItemInMainHand().isEmpty()) {
+                                    player.sendMessage(LanguageUtils.getMessage("commands.sit.empty-hand-required"));
+                                    return 0;
+                                }
+
+                                boolean isSpecialBlock = false;
                                 for (String block : configuration.getStringList("blocks.blocks")) {
                                     if (blockBelow.getType().name().toLowerCase().contains(block.toLowerCase())) {
                                         plugin.sitDown(player, blockBelow, false);
-                                        player.sendMessage(LanguageUtils.getMessage("commands.sit"));
-                                        return 1;
+                                        isSpecialBlock = true;
+                                        break;
                                     }
                                 }
 
-                                plugin.sitDown(player, blockBelow, true);
-                                player.sendMessage(LanguageUtils.getMessage("commands.sit"));
+                                if (!isSpecialBlock) {
+                                    plugin.sitDown(player, blockBelow, true);
+                                }
+
+                                player.sendMessage(LanguageUtils.getMessage("commands.sit.success"));
                                 return 1;
                             })
                             .then(Commands.literal("toggle")
