@@ -33,6 +33,11 @@ Players can sit using commands or by interacting with various blocks.
 
 - Sit by using `/sit` or clicking on stairs, carpets, and slabs
 - Sit on other players
+- **Crawl mode**: Use `/crawl` command to enter crawling mode with swimming pose
+- Empty hand requirement option for sitting and crawling
+- Prevent shift-click sitting on players
+- Eject players by crouching while sitting on them
+- **Auto-stop crawling**: Automatically stop crawling on jump, sneak, damage, or vertical movement (configurable)
 - Full language customization via [MiniMessage](https://docs.advntr.dev/minimessage/format.html)
 - Permissions support
 - Easily reload config with `/vsit reload`
@@ -44,16 +49,34 @@ Players can sit using commands or by interacting with various blocks.
 | Permission       | Description                          |
 |------------------|--------------------------------------|
 | `vsit.sit`       | Allows the user to sit               |
+| `vsit.crawl`     | Allows the user to crawl             |
+| `vsit.crawl.toggle` | Allows players to use the `/crawl toggle` command |
 | `vsit.reload`    | Allows reloading the plugin config   |
 
 ---
 
 ## 🎮 How to Use
 
+### Sitting
 You can sit by:
 
 - Using the `/sit` command  
 - Right-clicking supported blocks (stairs, carpets, slabs)
+- Right-clicking on other players (if not shift-clicking)
+
+### Crawling
+- Use `/crawl` command to enter/exit crawling mode
+- **Swimming pose**: Players will appear in a swimming position while crawling
+- **Auto-stop**: Crawling automatically stops on jump, sneak, damage, or vertical movement (configurable)
+- **Empty hand requirement**: If enabled in config, you must have an empty main hand to crawl
+
+### Commands
+- `/sit` - Sit on the block below you
+- `/crawl` - Enter/exit crawling mode
+- `/crawl toggle` - Enable/disable crawling for yourself
+- `/crawl stop` - Stop crawling (alternative to `/crawl`)
+- `/vsit reload` - Reload the plugin configuration (admin only)
+
 
 ### 🖼️ Preview
 
@@ -71,18 +94,33 @@ You can sit by:
 language: "en"
 
 enabled: true
-
 players:
   enabled: true
+  require-empty-hand: false
+  blocked-worlds:
+    - "SOME_CUSTOM_DISABLED_WORLD"
 
 blocks:
   enabled: true
+  require-empty-hand: false
   right-click: true
   left-click: false
+  blocked-worlds:
+    - "DISABLED_WORLD"
   blocks:
     - STAIR
     - CARPET
     - SLAB
+
+crawl:
+  enabled: true
+  require-empty-hand: false
+  blocked-worlds:
+    - "SOME_CUSTOM_DISABLED_WORLD"
+  stop-on-jump: true
+  stop-on-sneak: true
+  stop-on-damage: true
+  stop-on-vertical-movement: true
 ```
 
 ### language.yml
