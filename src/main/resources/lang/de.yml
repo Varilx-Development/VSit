@@ -3,7 +3,25 @@ prefix: "<b><gradient:#08FB22:#BBFDAD>[VSit]</gradient></b><reset><!i><gray> "
 startup: "<prefix>VSit wurde gestartet!"
 
 commands:
-  sit: "<prefix>Du sitzt jetzt."
+  sit:
+    success: "<prefix>Du sitzt jetzt"
+    stopped: "<prefix><yellow>Du bist aufgestanden"
+    occupied: "<prefix><red>Du kannst dich dort nicht hinsetzen, da bereits jemand dort sitzt!"
+    player:
+      success: "<prefix>Du sitzt jetzt auf %player%!"
+      stopped: "<prefix><yellow>Du bist von %player% aufgestanden!"
+      cooldown: "<prefix><red>Bitte warte, bevor du wieder auf einen Spieler sitzt"
+    empty-hand-required: "<prefix><red>Du musst eine leere Hand haben, um dich hinzusetzen"
+  crawl:
+    started: "<prefix><green>Du krabbelst jetzt"
+    stopped: "<prefix><yellow>Du hast aufgehört zu krabbeln"
+    disabled: "<prefix><red>Krabbeln ist deaktiviert"
+    world-disabled: "<prefix><red>Krabbeln ist in dieser Welt deaktiviert"
+    empty-hand-required: "<prefix><red>Du musst eine leere Hand haben, um zu krabbeln"
+    not-crawling: "<prefix><red>Du krabbelst derzeit nicht"
+    toggle:
+      disabled: "<prefix><red>Du kannst keine Krabbel-Befehle mehr verwenden"
+      enabled: "<prefix><green>Du kannst wieder Krabbel-Befehle verwenden"
   reload: "<prefix>Die Konfigurationen wurden neu geladen."
   toggle:
     disabled: "<prefix><red>Du kannst nun nicht mehr auf Blöcken sitzen"
