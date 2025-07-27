@@ -7,5 +7,9 @@ description: A fully customizable sit plugin
 permissions:
   vsit.sit:
     description: "Allows the user to sit down"
+  vsit.crawl:
+    description: "Allows the user to crawl"
+  vsit.crawl.toggle:
+    description: "Allows the user to toggle crawl functionality"
   vsit.reload:
     description: "Allows the user to reload the configuration"
