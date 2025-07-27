@@ -3,6 +3,8 @@ language: "en"
 enabled: true
 players:
   enabled: true
+  require-empty-hand: false
+  sit-height: 1.0
   blocked-worlds:
     - "SOME_CUSTOM_DISABLED_WORLD"
 
@@ -17,3 +19,13 @@ blocks:
     - STAIR
     - CARPET
     - SLAB
+
+crawl:
+  enabled: true
+  require-empty-hand: false
+  blocked-worlds:
+    - "SOME_CUSTOM_DISABLED_WORLD"
+  stop-on-jump: true
+  stop-on-sneak: true
+  stop-on-damage: true
+  stop-on-vertical-movement: true

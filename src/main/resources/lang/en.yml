@@ -4,7 +4,25 @@ prefix: "<b><gradient:#08FB22:#BBFDAD>[VSit]</gradient></b><reset><!i><gray> " #
 startup: "<prefix>VSit has started up!"
 
 commands:
-  sit: "<prefix>You are now sitting down"
+  sit:
+    success: "<prefix>You are now sitting down"
+    stopped: "<prefix><yellow>You stood up"
+    occupied: "<prefix><red>You can't sit there because someone is already sitting there!"
+    empty-hand-required: "<prefix><red>You need to have an empty hand to sit down"
+    player:
+      success: "<prefix><green>You are now sitting on <yellow>%player%</yellow></green>"
+      stopped: "<prefix><yellow>You stopped sitting on %player%</yellow>"
+      cooldown: "<prefix><red>Please wait before sitting on another player again"
+  crawl:
+    started: "<prefix><green>You are now crawling"
+    stopped: "<prefix><yellow>You stopped crawling"
+    disabled: "<prefix><red>Crawling is disabled"
+    world-disabled: "<prefix><red>Crawling is disabled in this world"
+    empty-hand-required: "<prefix><red>You need to have an empty hand to crawl"
+    not-crawling: "<prefix><red>You are not currently crawling"
+    toggle:
+      disabled: "<prefix><red>You can no longer use crawl commands"
+      enabled: "<prefix><green>You can now use crawl commands"
   reload: "<prefix>The Configurations has been reloaded"
   toggle:
     disabled: "<prefix><red>You can no longer sit on blocks"
