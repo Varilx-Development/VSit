@@ -5,7 +5,7 @@ plugins {
     id("java")
     id("io.github.goooler.shadow") version "8.1.8"
     id("maven-publish")
-    id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("xyz.jpenilla.run-paper") version "3.1.0"
 }
 
 group = "de.varilx"
